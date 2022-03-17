@@ -25,8 +25,8 @@ namespace CMSWinFormsApp
 
         private void jobDetialToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            JobDetailForm jobDetailForm = new JobDetailForm();
-            jobDetailForm.ShowDialog();
+            JobDetailsForm2 jobDetailsForm2 = new JobDetailsForm2();
+            jobDetailsForm2.ShowDialog();
         }
 
         private void customerToolStripMenuItem_Click(object sender, EventArgs e)

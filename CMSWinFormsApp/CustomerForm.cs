@@ -65,17 +65,63 @@ namespace CMSWinFormsApp
             {
                 errCustForm.SetError(textBox4, "");
             }
-            if (false == false)
+            if (flag == false)
                 return;
             else
             {
-                
+                sqlDataAdapter1.Update(customerDataSet11);
+                MessageBox.Show("Database updated!");
             }
         }
 
         private void BtnEdit1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            customerDataSet11.Clear();                                                                                                                                                                                                                                                                                                       
+            sqlDataAdapter1.Fill(customerDataSet11);
+            CurrentPoisition();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            btnNext.BindingContext[customerDataSet11, "tblCustomer"].Position += 1;
+            CurrentPoisition();
+        }
+        private void CurrentPoisition()
+        {
+            int currentPosition, ctr;
+            ctr = this.BindingContext[customerDataSet11, "tbCustomer"].Count;
+            if(ctr == 0)
+            {
+                textBox5.Text = "No Records";
+
+
+            }
+            else
+            {
+                currentPosition=this.BindingContext[customerDataSet11, "tblCustomer"].Position + 1;
+                textBox5.Text=currentPosition.ToString()+"of"+ctr.ToString();
+            }
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            btnPrevious.BindingContext[customerDataSet11,"tblCustomer"].Position-= 1;
+            CurrentPoisition();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            customerDataSet11.Clear();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
